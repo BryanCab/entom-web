@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#0B0F14" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="css/styles.css"/>
+  <title>Contacto · Fumigaciones ENTOM</title>
+  <meta name="description" content="Solicita por correo o WhatsApp y ubícanos en el mapa." />
+  <!-- CSS puntual para layout del formulario; NO modifica mapa -->
+  <style>
+    .contact-form{ display:grid; gap:14px; }
+    @media (min-width: 768px){
+      .contact-form{ grid-template-columns: 1fr 1fr; align-items:start; }
+      .contact-form > label{ margin:0; }
+      .contact-form > label:nth-of-type(1){ grid-column:1; }
+      .contact-form > label:nth-of-type(2){ grid-column:2; }
+      .contact-form > label:nth-of-type(3){ grid-column:1; }
+      .contact-form > label:nth-of-type(4){ grid-column:2; }
+      .contact-form > .contact-actions{ grid-column:2; justify-self:end; }
+      .contact-form > .contact-note{ grid-column:1 / -1; }
+    }
+    @media (max-width: 767.98px){
+      .contact-form > .contact-actions{ justify-self:stretch; }
+      .contact-form button{ width:100%; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a class="brand" href="index.html" aria-label="Ir al inicio">
+        <img src="images/logo.png" alt="Logo Fumigaciones ENTOM" width="44" height="44" loading="lazy">
+        <span class="brand__text">
+          <strong>Fumigaciones ENTOM</strong>
+          <small>Fumigación · Venta de productos</small>
+        </span>
+      </a>
+      <nav class="nav" aria-label="Navegación principal">
+        <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="navMenu" data-nav-toggle>
+          <span class="nav__toggle-icon" aria-hidden="true"></span>
+          <span class="visualmente-hidden">Abrir menú</span>
+        </button>
+        <div id="navMenu" class="nav__menu" data-nav-menu>
+          <a class="nav__link" href="index.html">Inicio</a>
+          <a class="nav__link" href="galeria.html">Galería</a>
+          <a class="nav__link" href="productos.html">Productos</a>
+          <a class="nav__link" href="contacto.html">Contacto</a>
+          <a class="btn btn--primary nav__cta" href="https://wa.me/527535396749?text=Hola%2C%20quiero%20una%20cotizaci%C3%B3n%20de%20fumigaci%C3%B3n%20o%20productos" target="_blank" rel="noopener">Cotizar por WhatsApp</a>
+          <button class="theme-toggle" type="button" data-theme-toggle aria-pressed="false" title="Cambiar tema">
+            <span aria-hidden="true" class="theme-toggle__icon">🌓</span>
+            <span class="visually-hidden">Cambiar modo claro/oscuro</span>
+          </button>
+          <button class="cart-btn" type="button" data-cart-toggle aria-expanded="false" aria-controls="cartDrawer" title="Abrir carrito">
+            🛒 <span class="cart-count" data-cart-count>0</span>
+          </button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenido" class="page">
+    <section class="page-hero">
+      <div class="container">
+        <h1>Contacto</h1>
+        <p class="muted">Escríbenos por WhatsApp o revisa nuestra ubicación de referencia.</p>
+      </div>
+    </section>
+
+    <section class="section" data-reveal>
+      <div class="container">
+        <div class="grid grid--2">
+          <div class="card">
+            <h2 class="h4">Solicitar un correo por WhatsApp</h2>
+            <form class="form contact-form contact-scope" id="waForm" data-email-form>
+              <label>
+                <span>Nombre</span>
+                <input name="nombre" type="text" autocomplete="name" required placeholder="Tu nombre" maxlength="30">
+              </label>
+              <label>
+                <span>Correo</span>
+                <input name="correo" type="email" autocomplete="email" required placeholder="tucorreo@dominio.com" maxlength="40">
+              </label>
+              <label>
+                <span>Teléfono</span>
+                <input name="telefono" type="tel" autocomplete="tel" required placeholder="Ej. 7535396749" pattern="[0-9+()\-\s]{8,}" maxlength="12">
+              </label>
+              <label>
+                <span>Mensaje</span>
+                <textarea name="mensaje" rows="5" required placeholder="Necesito un correo con la informacion de ..." maxlength="70"></textarea>
+              </label>
+
+              <div class="contact-actions">
+                <button class="btn btn--primary" type="submit">Enviar por WhatsApp</button>
+              </div>
+              <p class="muted small contact-note">Al enviar, se abrirá WhatsApp con tu mensaje listo para comunicarte con nosotros.</p>
+            </form>
+          </div>
+
+          <!-- Columna: Mapa (NO modificar) -->
+          <div class="card">
+            <h2 class="h4">Ubicación de referencia</h2>
+            <p class="muted">Puerto Lázaro Cárdenas, Michoacán.</p>
+            <div class="map-wrapper" style="aspect-ratio: 16/9;">
+              <iframe title="Mapa Puerto Lázaro Cárdenas" width="100%" height="100%" style="border:0;"
+                loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+                src="https://www.google.com/maps?q=Puerto%20L%C3%A1zaro%20C%C3%A1rdenas%2C%20Michoac%C3%A1n&output=embed"></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a class="brand brand--footer" href="index.html">
+            <img src="images/logo.png" alt="Logo Fumigaciones ENTOM" width="40" height="40" loading="lazy">
+            <span class="brand__text"><strong>Fumigaciones ENTOM</strong><small>Atención rápida</small></span>
+          </a>
+          <p class="muted">Servicio profesional de fumigación y venta de productos especializados.</p>
+        </div>
+        <div>
+          <h3 class="footer-title">Contacto</h3>
+          <ul class="footer-list">
+            <li><a href="tel:+527535396749">+52 753 539 6749 </a></li>
+            <li><a href="mailto:fumigacionesentom@gmail.com">fumigacionesentom@gmail.com</a></li>
+            <li><span>Lázaro Cárdenas, Michoacán y zonas alrededores</span></li>
+            <li><span>Lun–Sáb 9am–6pm</span></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="footer-title">Mapa del sitio</h3>
+          <ul class="footer-list">
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="galeria.html">Galería</a></li>
+            <li><a href="productos.html">Productos</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <small>© <span data-year></span> Fumigaciones ENTOM. Todos los derechos reservados.</small>
+        <small class="muted"><a href="tel:+527551277694">¿Te interesa un sitio web como este?</a></small>
+      </div>
+    </div>
+  </footer>
+
+  <a class="wa-fab" href="https://wa.me/527535396749?text=Hola%2C%20quiero%20una%20cotizaci%C3%B3n%20de%20fumigaci%C3%B3n%20o%20productos" target="_blank" rel="noopener" aria-label="Cotizar por WhatsApp" data-wa-fab>
+    <span class="wa-fab__icon" aria-hidden="true">💬</span>
+    <span class="wa-fab__text">WhatsApp</span>
+  </a>
+
+  <!-- MODAL DE CARRITO -->
+  <div class="modal cart-modal" id="cartModal" role="dialog" aria-modal="true" aria-labelledby="cartTitle" hidden data-cart-modal>
+    <div class="cart-modal__dialog" role="document">
+      <header class="cart-modal__header">
+        <h2 id="cartTitle">Tu carrito</h2>
+        <button class="cart-modal__close" type="button" data-cart-close aria-label="Cerrar carrito">✕</button>
+      </header>
+      <div class="cart-modal__body" data-cart-items>
+        <p class="muted" data-cart-empty>Tu carrito está vacío.</p>
+        <ul class="cart-list" data-cart-list></ul>
+      </div>
+      <footer class="cart-modal__footer">
+        <div class="cart-totals">
+          <span>Total:</span> <strong data-cart-total>$0 MXN</strong>
+        </div>
+        <div class="cart-actions">
+          <button class="btn btn--ghost" type="button" data-cart-clear>Vaciar</button>
+          <button class="btn btn--primary" type="button" data-cart-wa>Enviar por WhatsApp</button>
+        </div>
+      </footer>
+    </div>
+  </div>
+
+  <script>
+    // Enviar formulario por WhatsApp 
+    (function(){
+      const form = document.getElementById('waForm');
+      const WA_NUMBER = '527535396749'; // +52 753 539 6749
+      form.addEventListener('submit', function(e){
+        e.preventDefault();
+        const fd = new FormData(form);
+        const nombre = (fd.get('nombre')||'').toString().trim();
+        const correo = (fd.get('correo')||'').toString().trim();
+        const telefono = (fd.get('telefono')||'').toString().trim();
+        const mensaje = (fd.get('mensaje')||'').toString().trim();
+        const text = `Hola, soy ${nombre}.%0ACorreo: ${correo}%0ATeléfono: ${telefono}%0AMensaje: ${encodeURIComponent(mensaje)}`;
+        const url = `https://wa.me/${WA_NUMBER}?text=${text}`;
+        window.open(url, '_blank', 'noopener');
+      });
+    })();
+  </script>
+
+  <script src="js/main.js" defer></script>
+</body>
+</html>

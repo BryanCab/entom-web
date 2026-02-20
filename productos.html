@@ -4,47 +4,63 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#0B0F14" />
+  <!-- Bootstrap CSS (solo estilos) -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <!-- Bootstrap CSS (solo estilos, sin JS) -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
   <link rel="stylesheet" href="css/styles.css" />
-
-  <title>Productos | Fumigaciones ENTOM</title>
-  <meta name="description" content="Productos y soluciones." />
+  <title>Productos · Fumigaciones ENTOM</title>
+  <meta name="description" content="Catálogo de productos para control de plagas. Agrega al carrito y solicita por WhatsApp." />
   <meta property="og:image" content="/images/logo.png" />
+
+  <!-- Overrides locales SOLO para esta página -->
+  <style>
+    /* Imagen en card de producto */
+    .product__media{position:relative; border-radius:12px; overflow:hidden; border:1px solid var(--border); background:var(--surface); margin:-6px -6px 12px;}
+    .product__media img{width:100%; height:220px; object-fit:cover; display:block;}
+
+    /* Precio: alto contraste en fondos claros */
+    .price{font-weight:800; letter-spacing:.2px;}
+    [data-theme="light"] .price, :root:not([data-theme]) .price{ color:#127a56; }
+    [data-theme="dark"] .price{ color:#64f2b2; }
+
+    /* Modal: fondo sólido (sin transparencia) y espacio para imagen */
+    .modal .modal__dialog{ background:#0b0f14; }
+    [data-theme="light"] .modal .modal__dialog, :root:not([data-theme]) .modal .modal__dialog{ background:#ffffff; }
+    .modal__media{ margin: 0 16px 16px; }
+    .modal__media img{ width:100%; height:auto; border-radius:12px; display:block; }
+    .modal__header{ border-bottom:1px solid var(--border); }
+  </style>
 </head>
 <body>
-
   <a class="skip-link" href="#contenido">Saltar al contenido</a>
-
   <header class="site-header">
     <div class="container site-header__inner">
       <a class="brand" href="index.html" aria-label="Ir al inicio">
         <img src="images/logo.png" alt="Logo Fumigaciones ENTOM" width="44" height="44" loading="lazy" />
         <span class="brand__text">
           <strong>Fumigaciones ENTOM</strong>
-          <small>Fumigación · Limpieza de colchones</small>
+          <small>Fumigación · Venta de productos</small>
         </span>
       </a>
-
       <nav class="nav" aria-label="Navegación principal">
         <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="navMenu" data-nav-toggle>
           <span class="nav__toggle-icon" aria-hidden="true"></span>
           <span class="visually-hidden">Abrir menú</span>
         </button>
-
         <div id="navMenu" class="nav__menu" data-nav-menu>
           <a class="nav__link" href="index.html">Inicio</a>
           <a class="nav__link" href="galeria.html">Galería</a>
           <a class="nav__link" href="productos.html">Productos</a>
-          <a class="nav__link" href="limpieza_colchones.html">Limpieza de Colchones</a>
-          <a class="btn btn--primary nav__cta" href="https://wa.me/527535396749?text=Hola%2C%20quiero%20una%20cotizaci%C3%B3n%20para%20..." target="_blank" rel="noopener">Cotizar por WhatsApp</a>
-
+          <a class="nav__link" href="contacto.html">Contacto</a>
+          <a class="btn btn--primary nav__cta" href="https://wa.me/527535396749?text=Hola%2C%20quiero%20una%20cotizaci%C3%B3n%20para%20productos" target="_blank" rel="noopener">Cotizar por WhatsApp</a>
           <button class="theme-toggle" type="button" data-theme-toggle aria-pressed="false" title="Cambiar tema">
             <span aria-hidden="true" class="theme-toggle__icon">🌓</span>
             <span class="visually-hidden">Cambiar modo claro/oscuro</span>
+          </button>
+          <button class="cart-btn" type="button" data-cart-toggle aria-expanded="false" aria-controls="cartDrawer" title="Abrir carrito">
+            🛒 <span class="cart-count" data-cart-count>0</span>
           </button>
         </div>
       </nav>
@@ -52,83 +68,148 @@
   </header>
 
   <main id="contenido" class="page">
-    <section class="page-hero"><div class="container"><h1>Productos y soluciones</h1><p class="muted">Filtra o busca por nombre/categoría.</p></div></section>
+    <section class="page-hero">
+      <div class="container">
+        <h1>Productos y soluciones</h1>
+        <p class="muted">Busca por nombre o filtra por categoría. Abre el detalle para ver precio y agregar al carrito.</p>
+      </div>
+    </section>
+
     <section class="section" data-reveal>
       <div class="container">
         <div class="products-toolbar">
-          <label class="search"><span class="visually-hidden">Buscar</span><input type="search" placeholder="Buscar..." data-product-search /><span class="search__icon" aria-hidden="true">🔎</span></label>
-          <div class="chips" role="group" aria-label="Filtrar por categoría"><button class="chip is-active" type="button" data-filter="all">Todo</button><button class="chip" type="button" data-filter="desinfección">Desinfección</button>
-<button class="chip" type="button" data-filter="exterior">Exterior</button>
-<button class="chip" type="button" data-filter="hogar">Hogar</button>
-<button class="chip" type="button" data-filter="industria">Industria</button></div>
-          <div><a class="btn btn--primary" href="https://wa.me/527535396749?text=Hola%2C%20quiero%20una%20cotizaci%C3%B3n%20para%20..." target="_blank" rel="noopener">Cotizar por WhatsApp</a></div>
+          <label class="search">
+            <span class="visually-hidden">Buscar</span>
+            <input type="search" placeholder="Buscar..." data-product-search>
+            <span class="search__icon" aria-hidden="true">🔎</span>
+          </label>
+          <div class="chips" role="group" aria-label="Filtrar por categoría">
+            <button class="chip is-active" type="button" data-filter="all">Todo</button>
+            <button class="chip" type="button" data-filter="desinfección">Desinfección</button>
+            <button class="chip" type="button" data-filter="exterior">Exterior</button>
+            <button class="chip" type="button" data-filter="hogar">Hogar</button>
+            <button class="chip" type="button" data-filter="industria">Industria</button>
+          </div>
+          <div>
+            <a class="btn btn--primary" href="https://wa.me/527535396749?text=Hola%2C%20quiero%20informaci%C3%B3n%20de%20productos" target="_blank" rel="noopener">Cotizar por WhatsApp</a>
+          </div>
         </div>
+
         <div class="grid grid--3" data-products-grid>
-          <article class="card product" data-product data-name="insecticida residual" data-category="hogar">
+          <!-- Cada card ahora incluye imagen (images/im1.jpg, im2.jpg, ... de prueba) -->
+          <article class="card product" data-product data-id="p01" data-name="insecticida residual" data-category="hogar">
+            <figure class="product__media"><img src="images/galeria/g21.jpg" alt="Insecticida residual" loading="lazy" data-product-img></figure>
             <div class="product__top"><span class="badge badge--soft">Hogar</span><span class="muted small">#01</span></div>
             <h3>Insecticida residual</h3>
             <p class="muted">Control prolongado para plagas comunes (uso responsable).</p>
-            <div class="card__actions"><a class="btn btn--primary btn--small" href="https://wa.me/527535396749?text=Hola%2C%20me%20interesa%20informaci%C3%B3n%20sobre%20Insecticida%20residual.%20Hola%2C%20quiero%20una%20cotizaci%C3%B3n%20para%20..." target="_blank" rel="noopener">Solicitar por WhatsApp</a></div>
+            <p class="price" data-price="$229 MXN">$229 MXN</p>
+            <div class="card__actions"><button class="btn btn--primary btn--small" data-product-open>Ver detalles</button></div>
           </article>
-          <article class="card product" data-product data-name="gel para cucarachas" data-category="hogar">
+
+          <article class="card product" data-product data-id="p02" data-name="gel para cucarachas" data-category="hogar">
+            <figure class="product__media"><img src="images/galeria/g21.jpg" alt="Gel para cucarachas" loading="lazy" data-product-img></figure>
             <div class="product__top"><span class="badge badge--soft">Hogar</span><span class="muted small">#02</span></div>
             <h3>Gel para cucarachas</h3>
             <p class="muted">Aplicación focalizada para interiores.</p>
-            <div class="card__actions"><a class="btn btn--primary btn--small" href="https://wa.me/527535396749?text=Hola%2C%20me%20interesa%20informaci%C3%B3n%20sobre%20Gel%20para%20cucarachas.%20Hola%2C%20quiero%20una%20cotizaci%C3%B3n%20para%20..." target="_blank" rel="noopener">Solicitar por WhatsApp</a></div>
+            <p class="price" data-price="$199 MXN">$199 MXN</p>
+            <div class="card__actions"><button class="btn btn--primary btn--small" data-product-open>Ver detalles</button></div>
           </article>
-          <article class="card product" data-product data-name="nebulización ulv" data-category="industria">
+
+          <article class="card product" data-product data-id="p03" data-name="nebulización ulv" data-category="industria">
+            <figure class="product__media"><img src="images/galeria/g21.jpg" alt="Nebulización ULV" loading="lazy" data-product-img></figure>
             <div class="product__top"><span class="badge badge--soft">Industria</span><span class="muted small">#03</span></div>
             <h3>Nebulización ULV</h3>
             <p class="muted">Aplicación para áreas amplias (según diagnóstico).</p>
-            <div class="card__actions"><a class="btn btn--primary btn--small" href="https://wa.me/527535396749?text=Hola%2C%20me%20interesa%20informaci%C3%B3n%20sobre%20Nebulizaci%C3%B3n%20ULV.%20Hola%2C%20quiero%20una%20cotizaci%C3%B3n%20para%20..." target="_blank" rel="noopener">Solicitar por WhatsApp</a></div>
+            <p class="price" data-price="$349 MXN">$349 MXN</p>
+            <div class="card__actions"><button class="btn btn--primary btn--small" data-product-open>Ver detalles</button></div>
           </article>
-          <article class="card product" data-product data-name="control de roedores" data-category="industria">
+
+          <article class="card product" data-product data-id="p04" data-name="control de roedores" data-category="industria">
+            <figure class="product__media"><img src="images/galeria/g21.jpg" alt="Control de roedores" loading="lazy" data-product-img></figure>
             <div class="product__top"><span class="badge badge--soft">Industria</span><span class="muted small">#04</span></div>
             <h3>Control de roedores</h3>
-            <p class="muted">Medidas preventivas y estaciones.</p>
-            <div class="card__actions"><a class="btn btn--primary btn--small" href="https://wa.me/527535396749?text=Hola%2C%20me%20interesa%20informaci%C3%B3n%20sobre%20Control%20de%20roedores.%20Hola%2C%20quiero%20una%20cotizaci%C3%B3n%20para%20..." target="_blank" rel="noopener">Solicitar por WhatsApp</a></div>
+            <p class="muted">Estaciones y medidas preventivas.</p>
+            <p class="price" data-price="$289 MXN">$289 MXN</p>
+            <div class="card__actions"><button class="btn btn--primary btn--small" data-product-open>Ver detalles</button></div>
           </article>
-          <article class="card product" data-product data-name="desinfectante concentrado" data-category="desinfección">
+
+          <article class="card product" data-product data-id="p05" data-name="desinfectante concentrado" data-category="desinfección">
+            <figure class="product__media"><img src="images/galeria/g21.jpg" alt="Desinfectante concentrado" loading="lazy" data-product-img></figure>
             <div class="product__top"><span class="badge badge--soft">Desinfección</span><span class="muted small">#05</span></div>
             <h3>Desinfectante concentrado</h3>
             <p class="muted">Dilución según etiqueta.</p>
-            <div class="card__actions"><a class="btn btn--primary btn--small" href="https://wa.me/527535396749?text=Hola%2C%20me%20interesa%20informaci%C3%B3n%20sobre%20Desinfectante%20concentrado.%20Hola%2C%20quiero%20una%20cotizaci%C3%B3n%20para%20..." target="_blank" rel="noopener">Solicitar por WhatsApp</a></div>
+            <p class="price" data-price="$179 MXN">$179 MXN</p>
+            <div class="card__actions"><button class="btn btn--primary btn--small" data-product-open>Ver detalles</button></div>
           </article>
-          <article class="card product" data-product data-name="sanitizante" data-category="desinfección">
+
+          <article class="card product" data-product data-id="p06" data-name="sanitizante" data-category="desinfección">
+            <figure class="product__media"><img src="images/galeria/g21.jpg" alt="Sanitizante" loading="lazy" data-product-img></figure>
             <div class="product__top"><span class="badge badge--soft">Desinfección</span><span class="muted small">#06</span></div>
             <h3>Sanitizante</h3>
-            <p class="muted">Apoyo para áreas de alto contacto.</p>
-            <div class="card__actions"><a class="btn btn--primary btn--small" href="https://wa.me/527535396749?text=Hola%2C%20me%20interesa%20informaci%C3%B3n%20sobre%20Sanitizante.%20Hola%2C%20quiero%20una%20cotizaci%C3%B3n%20para%20..." target="_blank" rel="noopener">Solicitar por WhatsApp</a></div>
+            <p class="muted">Apoyo para áreas de contacto.</p>
+            <p class="price" data-price="$159 MXN">$159 MXN</p>
+            <div class="card__actions"><button class="btn btn--primary btn--small" data-product-open>Ver detalles</button></div>
           </article>
-          <article class="card product" data-product data-name="larvicida" data-category="exterior">
+
+          <article class="card product" data-product data-id="p07" data-name="larvicida" data-category="exterior">
+            <figure class="product__media"><img src="images/galeria/g21.jpg" alt="Larvicida" loading="lazy" data-product-img></figure>
             <div class="product__top"><span class="badge badge--soft">Exterior</span><span class="muted small">#07</span></div>
             <h3>Larvicida</h3>
             <p class="muted">Control dirigido para criaderos.</p>
-            <div class="card__actions"><a class="btn btn--primary btn--small" href="https://wa.me/527535396749?text=Hola%2C%20me%20interesa%20informaci%C3%B3n%20sobre%20Larvicida.%20Hola%2C%20quiero%20una%20cotizaci%C3%B3n%20para%20..." target="_blank" rel="noopener">Solicitar por WhatsApp</a></div>
+            <p class="price" data-price="$139 MXN">$139 MXN</p>
+            <div class="card__actions"><button class="btn btn--primary btn--small" data-product-open>Ver detalles</button></div>
           </article>
-          <article class="card product" data-product data-name="repelente perimetral" data-category="exterior">
+
+          <article class="card product" data-product data-id="p08" data-name="repelente perimetral" data-category="exterior">
+            <figure class="product__media"><img src="images/galeria/g21.jpg" alt="Repelente perimetral" loading="lazy" data-product-img></figure>
             <div class="product__top"><span class="badge badge--soft">Exterior</span><span class="muted small">#08</span></div>
             <h3>Repelente perimetral</h3>
             <p class="muted">Barreras en entradas y perímetros.</p>
-            <div class="card__actions"><a class="btn btn--primary btn--small" href="https://wa.me/527535396749?text=Hola%2C%20me%20interesa%20informaci%C3%B3n%20sobre%20Repelente%20perimetral.%20Hola%2C%20quiero%20una%20cotizaci%C3%B3n%20para%20..." target="_blank" rel="noopener">Solicitar por WhatsApp</a></div>
+            <p class="price" data-price="$189 MXN">$189 MXN</p>
+            <div class="card__actions"><button class="btn btn--primary btn--small" data-product-open>Ver detalles</button></div>
           </article>
-          <article class="card product" data-product data-name="trampas y monitoreo" data-category="industria">
+
+          <article class="card product" data-product data-id="p09" data-name="trampas y monitoreo" data-category="industria">
+            <figure class="product__media"><img src="images/galeria/g21.jpg" alt="Trampas y monitoreo" loading="lazy" data-product-img></figure>
             <div class="product__top"><span class="badge badge--soft">Industria</span><span class="muted small">#09</span></div>
             <h3>Trampas y monitoreo</h3>
             <p class="muted">Estrategia preventiva.</p>
-            <div class="card__actions"><a class="btn btn--primary btn--small" href="https://wa.me/527535396749?text=Hola%2C%20me%20interesa%20informaci%C3%B3n%20sobre%20Trampas%20y%20monitoreo.%20Hola%2C%20quiero%20una%20cotizaci%C3%B3n%20para%20..." target="_blank" rel="noopener">Solicitar por WhatsApp</a></div>
+            <p class="price" data-price="$129 MXN">$129 MXN</p>
+            <div class="card__actions"><button class="btn btn--primary btn--small" data-product-open>Ver detalles</button></div>
           </article>
-          <article class="card product" data-product data-name="neutralizador de olores" data-category="desinfección">
+
+          <article class="card product" data-product data-id="p10" data-name="neutralizador de olores" data-category="desinfección">
+            <figure class="product__media"><img src="images/galeria/g21.jpg" alt="Neutralizador de olores" loading="lazy" data-product-img></figure>
             <div class="product__top"><span class="badge badge--soft">Desinfección</span><span class="muted small">#10</span></div>
             <h3>Neutralizador de olores</h3>
-            <p class="muted">Apoyo para ambientes y textiles.</p>
-            <div class="card__actions"><a class="btn btn--primary btn--small" href="https://wa.me/527535396749?text=Hola%2C%20me%20interesa%20informaci%C3%B3n%20sobre%20Neutralizador%20de%20olores.%20Hola%2C%20quiero%20una%20cotizaci%C3%B3n%20para%20..." target="_blank" rel="noopener">Solicitar por WhatsApp</a></div>
+            <p class="muted">Ambientes y textiles.</p>
+            <p class="price" data-price="$149 MXN">$149 MXN</p>
+            <div class="card__actions"><button class="btn btn--primary btn--small" data-product-open>Ver detalles</button></div>
           </article>
         </div>
         <p class="muted small" data-products-empty hidden>No se encontraron productos.</p>
       </div>
     </section>
   </main>
+
+  <!-- Modal de producto (reutilizable) con imagen -->
+  <div class="modal" id="productModal" role="dialog" aria-modal="true" aria-labelledby="productTitle" hidden data-product-modal>
+    <div class="modal__dialog" role="document">
+      <header class="modal__header">
+        <h2 id="productTitle"></h2>
+        <button class="modal__close" type="button" aria-label="Cerrar" data-modal-close>✕</button>
+      </header>
+      <div class="modal__media"><img src="images/im1.jpg" alt="" data-modal-img></div>
+      <div class="modal__body">
+        <p class="muted" data-product-desc></p>
+        <p class="price h5" data-product-price></p>
+      </div>
+      <footer class="modal__footer">
+        <button class="btn btn--ghost" type="button" data-add-cart>Agregar al carrito</button>
+        <a class="btn btn--primary" target="_blank" rel="noopener" data-wa-btn href="#">Solicitar por WhatsApp</a>
+      </footer>
+    </div>
+  </div>
 
   <footer class="site-footer">
     <div class="container">
@@ -144,9 +225,9 @@
           <h3 class="footer-title">Contacto</h3>
           <ul class="footer-list">
             <li><a href="tel:+527535396749">+52 753 539 6749 </a></li>
-            <li><a href="mailto:fumigaciones-entom@gmail.com">fumigaciones-entom@gmail.com</a></li>
+            <li><a href="mailto:fumigacionesentom@gmail.com">fumigacionesentom@gmail.com</a></li>
             <li><span>Lázaro Cárdenas, Michoacán y zonas alrededores</span></li>
-            <li><span>Lun–Sáb 8am–9pm</span></li>
+            <li><span>Lun–Sáb 9am–6pm</span></li>
           </ul>
         </div>
         <div>
@@ -155,7 +236,7 @@
             <li><a href="index.html">Inicio</a></li>
             <li><a href="galeria.html">Galería</a></li>
             <li><a href="productos.html">Productos</a></li>
-            <li><a href="limpieza_colchones.html">Limpieza de Colchones</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
           </ul>
         </div>
       </div>
@@ -166,10 +247,30 @@
     </div>
   </footer>
 
-  <a class="wa-fab" href="https://wa.me/527535396749?text=Hola%2C%20quiero%20una%20cotizaci%C3%B3n%20para%20..." target="_blank" rel="noopener" aria-label="Cotizar por WhatsApp" data-wa-fab>
-    <span class="wa-fab__icon" aria-hidden="true">💬</span>
-    <span class="wa-fab__text">WhatsApp</span>
-  </a>
+  <!-- MODAL DE CARRITO NUEVO -->
+<div class="modal cart-modal" id="cartModal" role="dialog" aria-modal="true" aria-labelledby="cartTitle" hidden data-cart-modal>
+  <div class="cart-modal__dialog" role="document">
+    <header class="cart-modal__header">
+      <h2 id="cartTitle">Tu carrito</h2>
+      <button class="cart-modal__close" type="button" data-cart-close aria-label="Cerrar carrito">✕</button>
+    </header>
+
+    <div class="cart-modal__body" data-cart-items>
+      <p class="muted" data-cart-empty>Tu carrito está vacío.</p>
+      <ul class="cart-list" data-cart-list></ul>
+    </div>
+
+    <footer class="cart-modal__footer">
+      <div class="cart-totals">
+        <span>Total:</span> <strong data-cart-total>$0 MXN</strong>
+      </div>
+      <div class="cart-actions">
+        <button class="btn btn--ghost" type="button" data-cart-clear>Vaciar</button>
+        <button class="btn btn--primary" type="button" data-cart-wa>Enviar por WhatsApp</button>
+      </div>
+    </footer>
+  </div>
+</div>
 
   <div class="lightbox" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Visor de imagen" data-lightbox>
     <button class="lightbox__close" type="button" aria-label="Cerrar" data-lightbox-close>✕</button>
@@ -177,7 +278,29 @@
     <p class="lightbox__caption muted" data-lightbox-caption></p>
   </div>
 
+  <a class="wa-fab" href="https://wa.me/527535396749?text=Hola%2C%20quiero%20una%20cotizaci%C3%B3n%20para%20productos" target="_blank" rel="noopener" aria-label="Cotizar por WhatsApp" data-wa-fab>
+    <span class="wa-fab__icon" aria-hidden="true">💬</span>
+    <span class="wa-fab__text">WhatsApp</span>
+  </a>
+
+  <!-- JS principal -->
   <script src="js/main.js" defer></script>
+  <!-- Script de apoyo para pasar la imagen al modal -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function(){
+      document.addEventListener('click', function(e){
+        const btn = e.target.closest('[data-product-open]');
+        if (!btn) return;
+        const card = e.target.closest('[data-product]');
+        const img = card ? card.querySelector('img[data-product-img]') : null;
+        const modal = document.querySelector('[data-product-modal]');
+        const modalImg = modal ? modal.querySelector('[data-modal-img]') : null;
+        if (img && modalImg){
+          modalImg.src = img.src;
+          modalImg.alt = img.alt || '';
+        }
+      });
+    });
+  </script>
 </body>
 </html>
-

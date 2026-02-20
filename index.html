@@ -1,70 +1,164 @@
+
 <!doctype html>
 <html lang="es">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#0B0F14" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <!-- Bootstrap CSS (solo estilos, sin JS) -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-  <link rel="stylesheet" href="css/styles.css" />
+  
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
 
-  <title>Fumigaciones ENTOM | Fumigación y Limpieza de Colchones</title>
-  <meta name="description" content="Fumigación profesional y limpieza profunda de colchones. Atención en Lázaro Cárdenas, Michoacán y zonas alrededores. Cotiza por WhatsApp." />
+  <title>Fumigaciones ENTOM · Es tiempo de fumigar</title>
+  <meta name="description" content="Fumigación profesional y venta de productos. Atención en Lázaro Cárdenas y alrededores. Cotiza por WhatsApp." />
   <meta property="og:title" content="Fumigaciones ENTOM" />
-  <meta property="og:description" content="Servicios de fumigación y limpieza de colchones." />
+  <meta property="og:description" content="Servicios de fumigación y productos especializados." />
   <meta property="og:image" content="/images/logo.png" />
-  <meta property="og:type" content="website" />
+
+
+  <style>
+  /* ======== CSS CRÍTICO COMPATIBLE CON TEMAS ======== */
+  /* Variables base (dark por defecto) */
+  :root{
+    --bg:#0B0F14;
+    --surface:rgba(255,255,255,.06);
+    --text:rgba(255,255,255,.92);
+    --muted:rgba(255,255,255,.70);
+    --border:rgba(255,255,255,.12);
+    --primary-green:#24c17a;
+    --radius:16px;
+    --max:1200px;
+  }
+  /* Variables para LIGHT (coinciden con tu styles.css) */
+  [data-theme="light"]{
+    --bg:#f7faf9;
+    --surface:rgba(10,15,20,.04);
+    --text:rgba(10,15,20,.92);
+    --muted:rgba(10,15,20,.70);
+    --border:rgba(10,15,20,.12);
+  }
+
+  /* Base */
+  html,body{height:100%}
+  body{
+    margin:0;
+    font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+    /* Fondo usa variables, no colores fijos */
+    background:
+      radial-gradient(900px 460px at 15% -10%, rgba(36,193,122,.22), transparent 60%),
+      radial-gradient(700px 420px at 90% 0%, rgba(100,242,178,.12), transparent 55%),
+      var(--bg);
+    color:var(--text);
+    line-height:1.6;
+  }
+
+  /* Header compacto y responsive */
+  .site-header{
+    position:sticky;top:0;z-index:1000;
+    background:rgba(0,0,0,.72); /* capa translúcida */
+    backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--border);
+  }
+  [data-theme="light"] .site-header{
+    background:rgba(247,250,249,.72);
+  }
+  .site-header__inner{
+    max-width:var(--max);margin:0 auto;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:12px 16px;
+  }
+  .brand{display:flex;align-items:center;gap:12px;color:var(--text);}
+  .brand img{
+    border-radius:10px;border:1px solid var(--border);background:var(--surface);
+  }
+  .brand__text{display:flex;flex-direction:column;line-height:1.15}
+  .brand__text strong{font-weight:800;font-size:1.1rem}
+  .brand__text small{font-size:.82rem;color:var(--muted)}
+
+  /* Navegación; en móvil el menú completo lo pinta styles.css */
+  .nav__menu{display:none}
+  @media(min-width:992px){
+    .nav__menu{display:flex!important;gap:10px}
+    .nav__toggle{display:none}
+  }
+
+  /* ===== HERO (above-the-fold) ===== */
+  .hero{padding:92px 0 64px;position:relative;overflow:hidden}
+  .hero__inner{
+    max-width:var(--max);margin:0 auto;
+    display:grid;gap:24px;align-items:center;padding:0 16px;
+  }
+  .hero__content h1{
+    font-size:clamp(2rem,4vw,3.2rem);
+    margin:14px 0 12px;line-height:1.05;
+  }
+  .lead{color:var(--muted);max-width:58ch;font-size:1.05rem}
+  .hero__actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px}
+  .badge{
+    display:inline-flex;align-items:center;gap:8px;border-radius:999px;
+    padding:6px 10px;font-weight:700;font-size:.82rem;
+    background:rgba(36,193,122,.9);color:#03130a;
+  }
+  .btn--primary{
+    background:linear-gradient(135deg,var(--primary-green),#1aa966);
+    color:#03130a;border-radius:14px;padding:12px 16px;font-weight:700;
+    border:1px solid rgba(0,0,0,.12);
+  }
+  .btn--ghost{
+    border:1px solid var(--border);color:var(--text);
+    border-radius:14px;padding:12px 16px;
+  }
+</style>
+  
 </head>
 <body>
-
   <a class="skip-link" href="#contenido">Saltar al contenido</a>
-
-  <header class="site-header">
-    <div class="container site-header__inner">
-      <a class="brand" href="index.html" aria-label="Ir al inicio">
-        <img src="images/logo.png" alt="Logo Fumigaciones ENTOM" width="44" height="44" loading="lazy" />
-        <span class="brand__text">
-          <strong>Fumigaciones ENTOM</strong>
-          <small>Fumigación · Limpieza de colchones</small>
-        </span>
-      </a>
-
-      <nav class="nav" aria-label="Navegación principal">
-        <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="navMenu" data-nav-toggle>
-          <span class="nav__toggle-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Abrir menú</span>
+  
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a class="brand" href="index.html" aria-label="Ir al inicio">
+      <img src="images/logo.png" alt="Logo Fumigaciones ENTOM" width="44" height="44" loading="lazy">
+      <span class="brand__text">
+        <strong>Fumigaciones ENTOM</strong>
+        <small>Fumigación · Venta de productos</small>
+      </span>
+    </a>
+    <nav class="nav" aria-label="Navegación principal">
+      <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="navMenu" data-nav-toggle>
+        <span class="nav__toggle-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Abrir menú</span>
+      </button>
+      <div id="navMenu" class="nav__menu" data-nav-menu>
+        <a class="nav__link" href="index.html">Inicio</a>
+        <a class="nav__link" href="galeria.html">Galería</a>
+        <a class="nav__link" href="productos.html">Productos</a>
+        <a class="nav__link" href="contacto.html">Contacto</a>
+        <a class="btn btn--primary nav__cta" href="https://wa.me/527535396749?text=Hola%2C%20quiero%20una%20cotizaci%C3%B3n%20de%20fumigaci%C3%B3n%20o%20productos" target="_blank" rel="noopener">Cotizar por WhatsApp</a>
+        <button class="theme-toggle" type="button" data-theme-toggle aria-pressed="false" title="Cambiar tema">
+          <span aria-hidden="true" class="theme-toggle__icon">🌓</span>
+          <span class="visually-hidden">Cambiar modo claro/oscuro</span>
         </button>
-
-        <div id="navMenu" class="nav__menu" data-nav-menu>
-          <a class="nav__link" href="index.html">Inicio</a>
-          <a class="nav__link" href="galeria.html">Galería</a>
-          <a class="nav__link" href="productos.html">Productos</a>
-          <a class="nav__link" href="limpieza_colchones.html">Limpieza de Colchones</a>
-          <a class="btn btn--primary nav__cta" href="https://wa.me/527535396749?text=Hola%2C%20quiero%20una%20cotizaci%C3%B3n%20para%20..." target="_blank" rel="noopener">Cotizar por WhatsApp</a>
-
-          <button class="theme-toggle" type="button" data-theme-toggle aria-pressed="false" title="Cambiar tema">
-            <span aria-hidden="true" class="theme-toggle__icon">🌓</span>
-            <span class="visually-hidden">Cambiar modo claro/oscuro</span>
-          </button>
-        </div>
-      </nav>
-    </div>
-  </header>
-
+        <button class="cart-btn" type="button" data-cart-toggle aria-expanded="false" aria-controls="cartDrawer" title="Abrir carrito">
+          🛒 <span class="cart-count" data-cart-count>0</span>
+        </button>
+      </div>
+    </nav>
+  </div>
+</header>
 
   <main id="contenido">
     <section class="hero">
       <div class="container hero__inner">
         <div class="hero__content">
-          <span class="badge">Servicio local · Atención rápida</span>
-          <h1>Fumigación profesional y limpieza profunda de colchones</h1>
-          <p class="lead">Protege tu hogar o negocio con tratamientos efectivos y seguros. Eliminamos plagas y apoyamos la higiene del descanso con limpieza profunda.</p>
+          <span class="badge">Certificados por COFEPRIS · Atención de calidad</span>
+          <h1>Es tiempo de fumigar</h1>
+          <p class="lead">Protege tu hogar o negocio con tratamientos efectivos y seguros. Diagnóstico, aplicación y seguimiento. También vendemos productos profesionales para control de plagas.</p>
           <div class="hero__actions">
-            <a class="btn btn--primary" href="https://wa.me/527535396749?text=Hola%2C%20quiero%20una%20cotizaci%C3%B3n%20para%20..." target="_blank" rel="noopener">Cotizar por WhatsApp</a>
-            <a class="btn btn--ghost" href="#servicios">Ver servicios</a>
+            <a class="btn btn--primary" href="https://wa.me/527535396749?text=Hola%2C%20busco%20servicio%20de%20fumigaci%C3%B3n" target="_blank" rel="noopener">Cotizar fumigación</a>
+            <a class="btn btn--ghost" href="productos.html">Ver productos</a>
           </div>
         </div>
         <div class="hero__media" aria-hidden="true">
@@ -76,9 +170,9 @@
                 <li>Casas y departamentos</li>
                 <li>Negocios</li>
                 <li>Exterior y patios</li>
-                <li>Colchones y textiles</li>
+                <li>Control de plagas</li>
               </ul>
-              <a class="btn btn--small btn--primary" href="limpieza_colchones.html">Ver limpieza de colchones</a>
+              <a class="btn btn--small btn--primary" href="galeria.html">Ver trabajos</a>
             </div>
           </div>
         </div>
@@ -86,153 +180,215 @@
       <div class="hero__glow" aria-hidden="true"></div>
     </section>
 
-    <section id="servicios" class="section" data-reveal>
+    <section class="section" data-reveal>
       <div class="container">
         <div class="section-head">
           <h2>Servicios principales</h2>
-          <p class="muted">Atención en Lázaro Cárdenas, Michoacán y zonas alrededores. Agenda flexible: Lun–Sáb 8am–9pm.</p>
+          <p class="muted">Atención en Lázaro Cárdenas, Michoacán y zonas alrededores. Agenda flexible: Lun–Sáb 9am–6pm.</p>
         </div>
-        <div class="grid grid--2">
+        <div class="grid grid--3">
           <article class="card card--service">
             <div class="card__icon" aria-hidden="true">🛡️</div>
             <h3>Fumigación y control de plagas</h3>
-            <p>Tratamientos para plagas comunes. Diagnóstico, aplicación y recomendaciones preventivas.</p>
+            <p>Diagnóstico, aplicación y recomendaciones preventivas.</p>
             <div class="card__actions">
-              <a class="btn btn--primary" href="https://wa.me/527535396749?text=Hola%2C%20quiero%20una%20cotizaci%C3%B3n%20para%20fumigaci%C3%B3n..." target="_blank" rel="noopener">Cotizar</a>
-              <a class="btn btn--ghost" href="productos.html">Ver productos</a>
+              <a class="btn btn--primary" href="https://wa.me/527535396749?text=Hola%2C%20quiero%20agendar%20fumigaci%C3%B3n">Cotizar</a>
             </div>
           </article>
           <article class="card card--service">
-            <div class="card__icon" aria-hidden="true">🧼</div>
-            <h3>Limpieza profunda de colchones</h3>
-            <p>Eliminación de suciedad superficial, apoyo para control de ácaros, olores y manchas (según material).</p>
+            <div class="card__icon" aria-hidden="true">🏠</div>
+            <h3>Hogar y negocios</h3>
+            <p>Tratamientos para interiores y exteriores, con enfoque en seguridad.</p>
             <div class="card__actions">
-              <a class="btn btn--primary" href="limpieza_colchones.html">Ver detalles</a>
-              <a class="btn btn--ghost" href="https://wa.me/527535396749?text=Hola%2C%20quiero%20una%20cotizaci%C3%B3n%20para%20limpieza%20de%20colch%C3%B3n..." target="_blank" rel="noopener">Cotizar</a>
+              <a class="btn btn--ghost" href="galeria.html">Ver galería</a>
+            </div>
+          </article>
+          <article class="card card--service">
+            <div class="card__icon" aria-hidden="true">🧪</div>
+            <h3>Venta de productos</h3>
+            <p>Productos seleccionados para control de plagas. Consulta disponibilidad.</p>
+            <div class="card__actions">
+              <a class="btn btn--ghost" href="productos.html">Ver productos</a>
             </div>
           </article>
         </div>
       </div>
     </section>
 
+    
+<section class="section section--alt" id="servicios-que-brindamos" data-reveal>
+  <div class="container">
+    <!-- Encabezado sin "Solicitar inspección" -->
+    <div class="d-flex flex-column flex-lg-row align-items-lg-end justify-content-between gap-2 mb-3">
+      <div>
+        <h2 class="mb-1">Servicios que brindamos</h2>
+        <p class="muted mb-0">Tratamientos preventivos y correctivos con materiales autorizados. Programas a la medida para hogar, negocio y exterior.</p>
+      </div>
+      <div class="d-flex gap-2 flex-wrap mt-2 mt-lg-0">
+        <a class="btn btn--primary" href="https://wa.me/527535396749?text=Hola%2C%20quisiera%20cotizar%20un%20servicio%20de%20fumigacion" target="_blank" rel="noopener">Cotizar por WhatsApp</a>
+      </div>
+    </div>
+
+    <!-- Proceso (3 tarjetas) -->
+    <div class="row g-3 mb-3">
+      <div class="col-12 col-md-4">
+        <article class="svc-card h-100 d-flex flex-column">
+          <div class="d-flex align-items-center gap-2 mb-1">
+            <div class="svc-emoji" aria-hidden="true">🔍</div>
+            <h3 class="svc-card__title mb-0">Inspección general</h3>
+          </div>
+          <p class="muted">Evaluación del sitio, focos y rutas. Determinación del tratamiento y alcance.</p>
+          <ul class="svc-tags"><li class="tag">Diagnóstico</li><li class="tag">Levantamiento</li></ul>
+          <div class="mt-auto pt-1 d-grid"><a class="btn btn--ghost" href="https://wa.me/527535396749?text=Quiero%20inspeccion%20general" target="_blank" rel="noopener">Consultar</a></div>
+        </article>
+      </div>
+      <div class="col-12 col-md-4">
+        <article class="svc-card h-100 d-flex flex-column">
+          <div class="d-flex align-items-center gap-2 mb-1">
+            <div class="svc-emoji" aria-hidden="true">🧭</div>
+            <h3 class="svc-card__title mb-0">Monitoreo programado</h3>
+          </div>
+          <p class="muted">Seguimiento de actividad con registro y recomendaciones.</p>
+          <ul class="svc-tags"><li class="tag">Mensual</li><li class="tag">Bimestral</li><li class="tag">A demanda</li></ul>
+          <div class="mt-auto pt-1 d-grid"><a class="btn btn--ghost" href="https://wa.me/527535396749?text=Quiero%20monitoreo%20programado" target="_blank" rel="noopener">Consultar</a></div>
+        </article>
+      </div>
+      <div class="col-12 col-md-4">
+        <article class="svc-card h-100 d-flex flex-column">
+          <div class="d-flex align-items-center gap-2 mb-1">
+            <div class="svc-emoji" aria-hidden="true">🛡️</div>
+            <h3 class="svc-card__title mb-0">Aplicación del tratamiento</h3>
+          </div>
+          <p class="muted">Ejecución segura para rastreros, voladores, roedores o fumigación general.</p>
+          <ul class="svc-tags"><li class="tag">Preventivo</li><li class="tag">Correctivo</li></ul>
+          <div class="mt-auto pt-1 d-grid"><a class="btn btn--ghost" href="https://wa.me/527535396749?text=Quiero%20aplicacion%20de%20tratamiento" target="_blank" rel="noopener">Consultar</a></div>
+        </article>
+      </div>
+    </div>
+
+    <!-- Mosaico por tipo (cards alineadas, botón siempre abajo) -->
+    <div class="row g-3">
+      <div class="col-12 col-md-6 col-lg-4">
+        <article class="svc-card h-100 d-flex flex-column">
+          <div class="d-flex align-items-center gap-2 mb-1">
+            <div class="svc-emoji" aria-hidden="true">🪳</div>
+            <h3 class="svc-card__title mb-0">Insectos rastreros</h3>
+          </div>
+          <p class="muted">Cucaracha americana/alemana, hormiga, alacrán.</p>
+          <ul class="svc-meta">
+            <li><strong>Áreas:</strong> cocina, baños, perímetros, zoclos.</li>
+            <li><strong>Métodos:</strong> cebo gel, residual, sellado.</li>
+          </ul>
+          <div class="mt-auto pt-1 d-grid"><a class="btn btn--ghost" href="https://wa.me/527535396749?text=Quiero%20control%20de%20insectos%20rastreros" target="_blank" rel="noopener">Consultar</a></div>
+        </article>
+      </div>
+
+      <div class="col-12 col-md-6 col-lg-4">
+        <article class="svc-card h-100 d-flex flex-column">
+          <div class="d-flex align-items-center gap-2 mb-1">
+            <div class="svc-emoji" aria-hidden="true">🦟</div>
+            <h3 class="svc-card__title mb-0">Insectos voladores</h3>
+          </div>
+          <p class="muted">Mosco/mosquito y moscas. Larvicida y barreras perimetrales.</p>
+          <ul class="svc-meta">
+            <li><strong>Áreas:</strong> patios, azotea, jardines, rejillas.</li>
+            <li><strong>Métodos:</strong> ULV, trampas, eliminación de criaderos.</li>
+          </ul>
+          <div class="mt-auto pt-1 d-grid"><a class="btn btn--ghost" href="https://wa.me/527535396749?text=Quiero%20control%20de%20insectos%20voladores" target="_blank" rel="noopener">Consultar</a></div>
+        </article>
+      </div>
+
+      <div class="col-12 col-md-6 col-lg-4">
+        <article class="svc-card h-100 d-flex flex-column">
+          <div class="d-flex align-items-center gap-2 mb-1">
+            <div class="svc-emoji" aria-hidden="true">🐭</div>
+            <h3 class="svc-card__title mb-0">Roedores</h3>
+          </div>
+          <p class="muted">Control y monitoreo con estaciones y cebos; medidas preventivas.</p>
+          <ul class="svc-meta">
+            <li><strong>Áreas:</strong> almacenes, cocinas, perímetros.</li>
+            <li><strong>Métodos:</strong> estaciones, trampas y sellado.</li>
+          </ul>
+          <div class="mt-auto pt-1 d-grid"><a class="btn btn--ghost" href="https://wa.me/527535396749?text=Quiero%20control%20de%20roedores" target="_blank" rel="noopener">Consultar</a></div>
+        </article>
+      </div>
+
+      <div class="col-12 col-md-6 col-lg-4">
+        <article class="svc-card h-100 d-flex flex-column">
+          <div class="d-flex align-items-center gap-2 mb-1">
+            <div class="svc-emoji" aria-hidden="true">💨</div>
+            <h3 class="svc-card__title mb-0">Nebulización ULV</h3>
+          </div>
+          <p class="muted">Cobertura uniforme en exteriores y áreas comunes.</p>
+          <ul class="svc-meta">
+            <li><strong>Áreas:</strong> patios, bodegas, zonas abiertas.</li>
+            <li><strong>Métodos:</strong> ULV, barreras químicas.</li>
+          </ul>
+          <div class="mt-auto pt-1 d-grid"><a class="btn btn--ghost" href="https://wa.me/527535396749?text=Quiero%20nebulizacion%20ULV" target="_blank" rel="noopener">Consultar</a></div>
+        </article>
+      </div>
+
+      <div class="col-12 col-md-6 col-lg-4">
+        <article class="svc-card h-100 d-flex flex-column">
+          <div class="d-flex align-items-center gap-2 mb-1">
+            <div class="svc-emoji" aria-hidden="true">🏠</div>
+            <h3 class="svc-card__title mb-0">Fumigación general</h3>
+          </div>
+          <p class="muted">Aplicación integral según grado de infestación.</p>
+          <ul class="svc-meta">
+            <li><strong>Áreas:</strong> interior y exterior.</li>
+            <li><strong>Métodos:</strong> residual, cebos, ULV según caso.</li>
+          </ul>
+          <div class="mt-auto pt-1 d-grid"><a class="btn btn--ghost" href="https://wa.me/527535396749?text=Quiero%20fumigacion%20general" target="_blank" rel="noopener">Consultar</a></div>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+
     <section class="section section--alt" data-reveal>
       <div class="container">
         <div class="section-head">
-          <h2>Galería destacada</h2>
-          <p class="muted">Utilizamos los productos de mejor calidad.</p>
+          <h2>Preguntas frecuentes</h2>
+          <p class="muted">Resolvemos dudas comunes sobre nuestros servicios.</p>
         </div>
-        <div class="grid grid--gallery"><figure class="thumb" data-lightbox-item data-src="images/galeria/g1.jpg" data-caption="Trabajo #1">
-            <img src="images/galeria/g1.jpg" alt="Imagen de trabajo 1" loading="lazy" />
-            <figcaption><span>Ver</span></figcaption>
-          </figure>
-          <figure class="thumb" data-lightbox-item data-src="images/galeria/g2.jpg" data-caption="Trabajo #2">
-            <img src="images/galeria/g2.jpg" alt="Imagen de trabajo 2" loading="lazy" />
-            <figcaption><span>Ver</span></figcaption>
-          </figure>
-          <figure class="thumb" data-lightbox-item data-src="images/galeria/g3.jpg" data-caption="Trabajo #3">
-            <img src="images/galeria/g3.jpg" alt="Imagen de trabajo 3" loading="lazy" />
-            <figcaption><span>Ver</span></figcaption>
-          </figure>
-          <figure class="thumb" data-lightbox-item data-src="images/galeria/g4.jpg" data-caption="Trabajo #4">
-            <img src="images/galeria/g4.jpg" alt="Imagen de trabajo 4" loading="lazy" />
-            <figcaption><span>Ver</span></figcaption>
-          </figure><figure class="thumb" data-lightbox-item data-src="images/galeria/g5.jpg" data-caption="Trabajo #5">
-            <img src="images/galeria/g5.jpg" alt="Imagen de trabajo 5" loading="lazy" />
-            <figcaption><span>Ver</span></figcaption>
-          </figure>
-          <figure class="thumb" data-lightbox-item data-src="images/galeria/g6.jpg" data-caption="Trabajo #6">
-            <img src="images/galeria/g6.jpg" alt="Imagen de trabajo 6" loading="lazy" />
-            <figcaption><span>Ver</span></figcaption>
-          </figure>
-          <figure class="thumb" data-lightbox-item data-src="images/galeria/g7.jpg" data-caption="Trabajo #7">
-            <img src="images/galeria/g7.jpg" alt="Imagen de trabajo 7" loading="lazy" />
-            <figcaption><span>Ver</span></figcaption>
-          </figure>
-          <figure class="thumb" data-lightbox-item data-src="images/galeria/g8.jpg" data-caption="Trabajo #8">
-            <img src="images/galeria/g8.jpg" alt="Imagen de trabajo 8" loading="lazy" />
-            <figcaption><span>Ver</span></figcaption>
-          </figure>
-
-        </div>
-        <div class="section-cta"><a class="btn btn--primary" href="galeria.html">Ver galería completa</a></div>
-      </div>
-    </section>
-
-    <section class="section" data-reveal>
-      <div class="container">
-        <div class="section-head"><h2>Productos (vista previa)</h2><p class="muted">Consulta disponibilidad y uso responsable.</p></div>
-        <div class="grid grid--3">
-          <article class="card"><span class="badge badge--soft">Hogar</span><h3>Insecticida residual</h3><p class="muted">Protección prolongada para interiores.</p><a class="btn btn--ghost btn--small" href="productos.html">Ver productos</a></article>
-          <article class="card"><span class="badge badge--soft">Desinfección</span><h3>Desinfectante</h3><p class="muted">Apoyo para sanitización (según indicación).</p><a class="btn btn--ghost btn--small" href="productos.html">Ver productos</a></article>
-          <article class="card"><span class="badge badge--soft">Industria</span><h3>Control de roedores</h3><p class="muted">Prevención y control con enfoque en seguridad.</p><a class="btn btn--ghost btn--small" href="productos.html">Ver productos</a></article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section section--alt" data-reveal>
-      <div class="container">
-        <div class="section-head"><h2>¿Por qué elegirnos?</h2><p class="muted">Servicio confiable y orientado a resultados.</p></div>
-        <div class="grid grid--4">
-          <div class="feature"><div class="feature__icon" aria-hidden="true">✅</div><h3>Garantía</h3><p class="muted">Seguimiento y recomendaciones.</p></div>
-          <div class="feature"><div class="feature__icon" aria-hidden="true">🧯</div><h3>Seguridad</h3><p class="muted">Aplicación responsable.</p></div>
-          <div class="feature"><div class="feature__icon" aria-hidden="true">⚡</div><h3>Rapidez</h3><p class="muted">Atención por WhatsApp.</p></div>
-          <div class="feature"><div class="feature__icon" aria-hidden="true">🤝</div><h3>Atención</h3><p class="muted">Explicación clara del proceso.</p></div>
-        </div>
-      </div>
-    </section>
-
-    <section id="contacto" class="section" data-reveal>
-      <div class="container">
-        <div class="section-head">
-          <h2>Contacto</h2>
-          <p class="muted">Cotiza rápido: WhatsApp, llamada o correo. También puedes dejarnos un mensaje.</p>
-        </div>
-
-        <div class="grid grid--2">
-          <div class="card">
-            <h3>Datos de contacto</h3>
-            <ul class="contact-list">
-              <li><strong>WhatsApp:</strong> <a href="https://wa.me/527535396749?text=Hola%2C%20quiero%20una%20cotizaci%C3%B3n%20para%20fumigaci%C3%B3n%2Fproducto%2Flimpieza%20de%20colch%C3%B3n" target="_blank" rel="noopener">+52 7535396749</a></li>
-              <li><strong>Teléfono:</strong> <a href="tel:+527535396749">+52 7535396749</a></li>
-              <li><strong>Correo:</strong> <a href="mailto:fumigaciones-entom@gmail.com">fumigaciones-entom@gmail.com</a></li>
-              <li><strong>Zona:</strong> Lázaro Cárdenas, Michoacán y zonas alrededor como Guacamayas, La Mira, y nos seguimos ampliando</li>
-              <li><strong>Horario:</strong> Lun–Sáb 8:00am–9:00pm</li>
-            </ul>
-            <br>
-            <div class="contact-actions">
-              <a class="btn btn--primary" href="https://wa.me/527535396749?text=Hola%2C%20quiero%20una%20cotizaci%C3%B3n%20para%20fumigaci%C3%B3n%2Fproducto%2Flimpieza%20de%20colch%C3%B3n" target="_blank" rel="noopener">Escribir por WhatsApp</a>
-              <a class="btn btn--ghost" href="productos.html">Ver productos</a>
+        <div class="accordion" data-accordion>
+          <div class="accordion__item">
+            <button class="accordion__btn" type="button" aria-expanded="false">¿Qué plagas atendemos?</button>
+            <div class="accordion__panel" hidden>
+              <p>Atendemos cucarachas, hormigas, mosquitos, arañas, alacranes y más. Hacemos diagnóstico previo según el caso.</p>
             </div>
           </div>
-
-          <div class="card">
-            <h3>Envíanos un mensaje</h3>
-            <form class="form" data-contact-form>
-              <div class="form-row">
-                <label>
-                  <span>Nombre</span>
-                  <input name="nombre" type="text" autocomplete="name" required placeholder="Tu nombre" />
-                </label>
-                <label>
-                  <span>Teléfono</span>
-                  <input name="telefono" type="tel" autocomplete="tel" required placeholder="Ej. 7535396749" />
-                </label>
-              </div>
-              <label>
-                <span>Mensaje</span>
-                <textarea name="mensaje" rows="5" required placeholder="Cuéntanos qué necesitas (tipo de plaga, tamaño del área, tipo de colchón, etc.)"></textarea>
-              </label>
-              <button class="btn btn--primary" type="submit">Enviar</button>
-              
-              <p class="muted small">Al enviar, generaremos un mensaje listo para WhatsApp.</p>
-            </form>
+          <div class="accordion__item">
+            <button class="accordion__btn" type="button" aria-expanded="false">¿Cuánto tarda el servicio?</button>
+            <div class="accordion__panel" hidden>
+              <p>Usualmente 60–90 minutos por vivienda promedio. Puede variar según el tamaño y el tipo de plaga.</p>
+            </div>
+          </div>
+          <div class="accordion__item">
+            <button class="accordion__btn" type="button" aria-expanded="false">¿Es seguro para mascotas y niños?</button>
+            <div class="accordion__panel" hidden>
+              <p>Aplicamos procesos responsables y damos indicaciones de ventilación y tiempos de reingreso.</p>
+            </div>
+          </div>
+          <div class="accordion__item">
+            <button class="accordion__btn" type="button" aria-expanded="false">¿Ofrecen garantía?</button>
+            <div class="accordion__panel" hidden>
+              <p>Sí, damos seguimiento y recomendaciones posteriores para mantener el resultado.</p>
+            </div>
+          </div>
+          <div class="accordion__item">
+            <button class="accordion__btn" type="button" aria-expanded="false">¿Cómo cotizo?</button>
+            <div class="accordion__panel" hidden>
+              <p>Escríbenos por WhatsApp con el tipo de plaga y el tamaño del área. Te respondemos el mismo día.</p>
+            </div>
           </div>
         </div>
       </div>
     </section>
-  </main>
 
-  <section class="section cta bg-dark">
+    <section class="section cta bg-dark">
       <div class="container">
         <div class="row align-items-center g-3">
           <div class="col-lg-8">
@@ -240,61 +396,84 @@
             <p class="mb-0 text-white-50">Escríbenos y agenda. Te orientamos desde el primer mensaje.</p>
           </div>
           <div class="col-lg-4 text-lg-end">
-            <a class="btn btn-light btn-lg" href="https://wa.me/7535396749?text=Hola%20Entom%2C%20quiero%20agendar%20un%20servicio" target="_blank" rel="noopener"><i class="bi bi-whatsapp"></i> WhatsApp</a>
+            <a class="btn btn-light btn-lg" href="https://wa.me/527535396749?text=Hola%20Entom%2C%20quiero%20agendar%20un%20servicio" target="_blank" rel="noopener">WhatsApp</a>
           </div>
         </div>
       </div>
     </section>
-
-  <footer class="site-footer">
-    <div class="container">
-      <div class="footer-grid">
-        <div>
-          <a class="brand brand--footer" href="index.html">
-            <img src="images/logo.png" alt="Logo Fumigaciones ENTOM" width="40" height="40" loading="lazy" />
-            <span class="brand__text"><strong>Fumigaciones ENTOM</strong><small>Atención rápida</small></span>
-          </a>
-          <p class="muted">Servicio profesional de fumigación, venta de productos y limpieza profunda de colchones.</p>
-        </div>
-        <div>
-          <h3 class="footer-title">Contacto</h3>
-
-          <ul class="footer-list">
-            <li><a href="tel:+527535396749">+52 7535396749 </a></li>
-            <li><a href="mailto:fumigaciones-entom@gmail.com">fumigaciones-entom@gmail.com</a></li>
-            <li><span>Lázaro Cárdenas, Michoacán y zonas alrededores</span></li>
-            <li><span>Lun–Sáb 8am–9pm</span></li>
-          </ul>
-        </div>
-        <div>
-          <h3 class="footer-title">Mapa del sitio</h3>
-          <ul class="footer-list">
-            <li><a href="index.html">Inicio</a></li>
-            <li><a href="galeria.html">Galería</a></li>
-            <li><a href="productos.html">Productos</a></li>
-            <li><a href="limpieza_colchones.html">Limpieza de Colchones</a></li>
-          </ul>
-        </div>
+  </main>
+  
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <a class="brand brand--footer" href="index.html">
+          <img src="images/logo.png" alt="Logo Fumigaciones ENTOM" width="40" height="40" loading="lazy">
+          <span class="brand__text"><strong>Fumigaciones ENTOM</strong><small>Atención rápida</small></span>
+        </a>
+        <p class="muted">Servicio profesional de fumigación y venta de productos especializados.</p>
       </div>
-      <div class="footer-bottom">
-        <small>© <span data-year></span> Fumigaciones ENTOM. Todos los derechos reservados.</small>
-        <small class="muted"><a href="tel:+527551277694">¿Te interesa un sitio web como este?</a></small>
+      <div>
+        <h3 class="footer-title">Contacto</h3>
+        <ul class="footer-list">
+          <li><a href="tel:+527535396749">+52 753 539 6749 </a></li>
+          <li><a href="mailto:fumigacionesentom@gmail.com">fumigacionesentom@gmail.com</a></li>
+          <li><span>Lázaro Cárdenas, Michoacán y zonas alrededores</span></li>
+          <li><span>Lun–Sáb 9am–6pm</span></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="footer-title">Mapa del sitio</h3>
+        <ul class="footer-list">
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="galeria.html">Galería</a></li>
+          <li><a href="productos.html">Productos</a></li>
+          <li><a href="contacto.html">Contacto</a></li>
+        </ul>
       </div>
     </div>
-  </footer>
+    <div class="footer-bottom">
+      <small>© <span data-year></span> Fumigaciones ENTOM. Todos los derechos reservados.</small>
+      <small class="muted"><a href="tel:+527551277694">¿Te interesa un sitio web como este?</a></small>
+    </div>
+  </div>
+</footer>
+<a class="wa-fab" href="https://wa.me/527535396749?text=Hola%2C%20quiero%20una%20cotizaci%C3%B3n%20de%20fumigaci%C3%B3n%20o%20productos" target="_blank" rel="noopener" aria-label="Cotizar por WhatsApp" data-wa-fab>
+  <span class="wa-fab__icon" aria-hidden="true">💬</span>
+  <span class="wa-fab__text">WhatsApp</span>
+</a>
 
-  <a class="wa-fab" href="https://wa.me/527535396749?text=Hola%2C%20quiero%20una%20cotizaci%C3%B3n%20para%20..." target="_blank" rel="noopener" aria-label="Cotizar por WhatsApp" data-wa-fab>
-    <span class="wa-fab__icon" aria-hidden="true">💬</span>
-    <span class="wa-fab__text">WhatsApp</span>
-  </a>
+  
+<!-- MODAL DE CARRITO () -->
+<div class="modal cart-modal" id="cartModal" role="dialog" aria-modal="true" aria-labelledby="cartTitle" hidden data-cart-modal>
+  <div class="cart-modal__dialog" role="document">
+    <header class="cart-modal__header">
+      <h2 id="cartTitle">Tu carrito</h2>
+      <button class="cart-modal__close" type="button" data-cart-close aria-label="Cerrar carrito">✕</button>
+    </header>
+
+    <div class="cart-modal__body" data-cart-items>
+      <p class="muted" data-cart-empty>Tu carrito está vacío.</p>
+      <ul class="cart-list" data-cart-list></ul>
+    </div>
+
+    <footer class="cart-modal__footer">
+      <div class="cart-totals">
+        <span>Total:</span> <strong data-cart-total>$0 MXN</strong>
+      </div>
+      <div class="cart-actions">
+        <button class="btn btn--ghost" type="button" data-cart-clear>Vaciar</button>
+        <button class="btn btn--primary" type="button" data-cart-wa>Enviar por WhatsApp</button>
+      </div>
+    </footer>
+  </div>
+</div>
 
   <div class="lightbox" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Visor de imagen" data-lightbox>
     <button class="lightbox__close" type="button" aria-label="Cerrar" data-lightbox-close>✕</button>
-    <img class="lightbox__img" alt="" src="" data-lightbox-img />
+    <img class="lightbox__img" alt="" src="" data-lightbox-img>
     <p class="lightbox__caption muted" data-lightbox-caption></p>
   </div>
-
   <script src="js/main.js" defer></script>
 </body>
 </html>
-
